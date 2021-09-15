@@ -8,8 +8,8 @@ const MainPageLayout = ({children}) => {
         <>
             <Title 
             title="Box Office" 
-            subtitle="Do You want to search for a movie or an actor?" />
-            
+            subtitle="Are You Looking for a movie or an actor?" />
+
             <Navigation/>
 
             {children}
