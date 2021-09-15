@@ -6,13 +6,12 @@ import Starred from "./pages/Starred"
 import NotFound from './pages/NotFound';
 
 import './App.css';
-import Navigation from './components/Navigation';
+
 
 function App() {
+  console.log("App.js")
   return (
     <>
-    <Navigation/>
-
     <Switch>
       <Route exact path='/'>
         <Home />
