@@ -7,7 +7,7 @@ const ShowCard = ({ name, id, summary, image }) => (
     </div>
     <h2>{name}</h2>
     <p>{summary}</p>
-    <subtitle>{id}</subtitle>
+    <h6>{id}</h6>
   </div>
 );
 
