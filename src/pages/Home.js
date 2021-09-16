@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 
 import MainPageLayout from '../components/MainPageLayout';
+import ShowGrid from '../components/show/ShowGrid';
+import ActorGrid from '../components/actor/ActorGrid';
+
 import { searchForQuery } from '../misc/config';
 
 const Home = () => {
@@ -34,13 +37,11 @@ const Home = () => {
     if (resultState && resultState.length > 0) {
       return (
         <>
-          {resultState[0].show
-            ? resultState.map(element => (
-                <h5 key={element.show.id}>{element.show.name}</h5>
-              ))
-            : resultState.map(element => (
-                <h5 key={element.person.id}>{element.person.name}</h5>
-              ))}
+          {resultState[0].show ? (
+            <ShowGrid data={resultState} />
+          ) : (
+            <ActorGrid data={resultState} />
+          )}
         </>
       );
     }
