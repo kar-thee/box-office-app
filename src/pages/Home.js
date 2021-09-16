@@ -9,6 +9,7 @@ const Home = () => {
   const [searchCategory, setSearchCategory] = useState('shows');
 
   const isShows = searchCategory === 'shows';
+
   console.log(isShows);
   const inputChange = ev => {
     setInputState(ev.target.value);
@@ -25,7 +26,7 @@ const Home = () => {
 
   const enterBtn = ev => {
     if (ev.keyCode === 13) {
-      searchBtn();
+      searchBtn(); // for mapping enter button as a key to search instead of click btn (enter -> keycode = 13)
     }
   };
 
