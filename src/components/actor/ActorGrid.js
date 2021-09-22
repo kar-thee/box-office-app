@@ -10,6 +10,7 @@ const ActorGrid = ({ data }) => {
       {data.map(({ person }) => (
         <ActorCard
           key={person.id}
+          url={person.url ? person.url : null}
           name={person.name}
           gender={person.gender}
           country={person.country ? person.country.name : null}
