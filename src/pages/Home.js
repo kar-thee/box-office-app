@@ -14,6 +14,7 @@ const Home = () => {
   const isShows = searchCategory === 'shows';
 
   console.log(isShows);
+
   const inputChange = ev => {
     setInputState(ev.target.value);
     console.log(ev.target.value);

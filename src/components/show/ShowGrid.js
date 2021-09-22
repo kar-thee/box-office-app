@@ -2,8 +2,11 @@
 import React from 'react';
 import ShowCard from './ShowCard';
 
+import notFoundImg from '../../Images/not-found.png';
+
 const ShowGrid = ({ data }) => {
   console.log(data, 'Data');
+
   return (
     <>
       {data.map(({ show }) => (
@@ -12,7 +15,7 @@ const ShowGrid = ({ data }) => {
           name={show.name}
           id={show.id}
           summary={show.summary}
-          image={show.image.medium || null}
+          image={show.image ? show.image.medium : notFoundImg} // this is to get if that data have image or not
         />
       ))}
     </>

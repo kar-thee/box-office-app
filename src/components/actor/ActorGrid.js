@@ -1,6 +1,8 @@
 import React from 'react';
 import ActorCard from './ActorCard';
 
+import notFoundImg from '../../Images/not-found.png';
+
 const ActorGrid = ({ data }) => {
   console.log(data, 'Data');
   return (
@@ -9,10 +11,12 @@ const ActorGrid = ({ data }) => {
         <ActorCard
           key={person.id}
           name={person.name}
-          id={person.id}
-          gender={person.gender || null}
-          country={person.country ? person.country.name : null}
-          image={person.image ? person.image.medium : null}
+          url={person.url}
+          gender={person.gender}
+          country={person.country}
+          image={person.image ? person.image.medium : notFoundImg}
+          birthday={person.birthday}
+          deathday={person.deathday}
         />
       ))}
     </>

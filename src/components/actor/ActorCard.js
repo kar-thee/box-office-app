@@ -1,15 +1,26 @@
 import React from 'react';
+// import { Link } from 'react-router-dom';
+// {url ? <Link to={url}>Know more about</Link> : null}
 
-const ActorCard = ({ name, id, country, image, gender }) => (
+const ActorCard = ({
+  name,
+  url,
+  country,
+  image,
+  gender,
+  birthday,
+  deathday,
+}) => (
   <div>
     <div>
-      <img src={image} alt={name} />
+      <img src={image} alt="actor" />
     </div>
-    <h2>
-      {name} - {gender}
-    </h2>
-    <p>{country ? `Belongs to ${country}` : `Country NotFound`}</p>
-    <h6>{id}</h6>
+    <h1>
+      {name} {gender ? `(${gender})` : null}
+    </h1>
+    <p>{country ? `Comes from ${country}` : 'No country known'}</p>
+    {birthday ? <p>Born {birthday}</p> : null}
+    <p>{deathday ? `Died ${deathday}` : 'Alive'}</p>
   </div>
 );
 
