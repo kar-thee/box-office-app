@@ -3,12 +3,13 @@ import React from 'react';
 import ShowCard from './ShowCard';
 
 import notFoundImg from '../../Images/not-found.png';
+import { FlexGrid } from '../styled';
 
 const ShowGrid = ({ data }) => {
   console.log(data, 'Data');
 
   return (
-    <>
+    <FlexGrid>
       {data.map(({ show }) => (
         <ShowCard
           key={show.id}
@@ -18,7 +19,7 @@ const ShowGrid = ({ data }) => {
           image={show.image ? show.image.medium : notFoundImg} // this is to get if that data have image or not
         />
       ))}
-    </>
+    </FlexGrid>
   );
   // <h1>ShowGrid</h1>
 };

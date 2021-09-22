@@ -2,6 +2,8 @@ import React from 'react';
 // import { Link } from 'react-router-dom';
 // {url ? <Link to={url}>Know more about</Link> : null}
 
+import { StyledActorCard } from './ActorCard.styled';
+
 const ActorCard = ({
   name,
   url,
@@ -11,22 +13,22 @@ const ActorCard = ({
   birthday,
   deathday,
 }) => (
-  <div>
-    <div>
+  <StyledActorCard>
+    <div className="img-wrapper">
       <img src={image} alt="actor" />
     </div>
-    <h1>
+    <h2>
       {name} {gender ? `(${gender})` : null}
-    </h1>
+    </h2>
     <p>{country ? `Comes from ${country}` : 'No country known'}</p>
     {birthday ? <p>Born {birthday}</p> : null}
-    <p>{deathday ? `Died ${deathday}` : 'Alive'}</p>
+    <p className="deathday">{deathday ? `Died ${deathday}` : 'Alive'}</p>
     {url ? (
       <a href={url} target="_blank" rel="noreferrer">
         Know more about {name}
       </a>
     ) : null}
-  </div>
+  </StyledActorCard>
 );
 
 export default ActorCard;
