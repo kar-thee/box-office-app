@@ -2,15 +2,7 @@ import React from 'react';
 // import { Link } from 'react-router-dom';
 // {url ? <Link to={url}>Know more about</Link> : null}
 
-const ActorCard = ({
-  name,
-  url,
-  country,
-  image,
-  gender,
-  birthday,
-  deathday,
-}) => (
+const ActorCard = ({ name, country, image, gender, birthday, deathday }) => (
   <div>
     <div>
       <img src={image} alt="actor" />

@@ -11,9 +11,8 @@ const ActorGrid = ({ data }) => {
         <ActorCard
           key={person.id}
           name={person.name}
-          url={person.url}
           gender={person.gender}
-          country={person.country}
+          country={person.country ? person.country.name : null}
           image={person.image ? person.image.medium : notFoundImg}
           birthday={person.birthday}
           deathday={person.deathday}
