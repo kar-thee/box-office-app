@@ -27,8 +27,14 @@ const ShowsDesc = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
-  console.log(showDesc, 'showDesc');
-  console.log(isError, 'isError');
+  // if we use multiple asynchrnous process then we should
+  // use a variable in unmount(return)
+  // so, setstate happens only when that variable is true...
+  // i didn't faced this issue...but with fetch and .then it may!
+
+  //   console.log(showDesc, 'showDesc');
+  //   console.log(isError, 'isError');
+
   if (isLoading) {
     return <p>Loading ......</p>;
   }

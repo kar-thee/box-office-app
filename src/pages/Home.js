@@ -13,7 +13,7 @@ const Home = () => {
 
   const isShows = searchCategory === 'shows';
 
-  console.log(isShows);
+  // console.log(isShows);
 
   const inputChange = ev => {
     setInputState(ev.target.value);
@@ -25,7 +25,7 @@ const Home = () => {
     const { data } = await searchForQuery(queryparams);
 
     setResultState(data);
-    console.log(data);
+    // console.log(data);
   };
 
   const enterBtn = ev => {
@@ -58,7 +58,7 @@ const Home = () => {
     setSearchCategory(ev.target.value);
   };
 
-  console.log('SearchCategory', searchCategory);
+  // console.log('SearchCategory', searchCategory);
 
   return (
     <>
