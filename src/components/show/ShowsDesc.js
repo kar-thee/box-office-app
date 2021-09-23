@@ -7,15 +7,40 @@ const ShowsDesc = () => {
   const { id } = useParams();
   console.log('id is', id);
   const [showDesc, setShowDesc] = useState(null);
+  const [isLoading, setisLoading] = useState(true);
+  const [isError, setisError] = useState(null);
+  const showDescUrl = `shows/${id}?embed[]=cast&embed[]=seasons`;
 
   useEffect(() => {
-    const showDescUrl = `shows/${id}?embed[]=cast&embed[]=seasons`;
-    searchForQuery(showDescUrl).then(response => {
-      setShowDesc(response.data);
-    });
+    const apiGet = async () => {
+      try {
+        const res = await searchForQuery(showDescUrl);
+        setShowDesc(res.data);
+        setisLoading(false);
+        setisError(false);
+      } catch (err) {
+        setisError(err.message);
+        setisLoading(false);
+      }
+    };
+    apiGet();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   console.log(showDesc, 'showDesc');
+  console.log(isError, 'isError');
+  if (isLoading) {
+    return <p>Loading ......</p>;
+  }
+  if (isError) {
+    return (
+      <p>
+        Sorry ! Error in ID
+        <br /> Message : {isError}
+      </p> // error message
+    );
+  }
+
   return (
     <>
       {id}
