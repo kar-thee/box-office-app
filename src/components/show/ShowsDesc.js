@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { searchForQuery } from '../../misc/config';
@@ -6,21 +6,51 @@ import { searchForQuery } from '../../misc/config';
 const ShowsDesc = () => {
   const { id } = useParams();
   console.log('id is', id);
-  const [showDesc, setShowDesc] = useState(null);
-  const [isLoading, setisLoading] = useState(true);
-  const [isError, setisError] = useState(null);
+
+  const initialState = {
+    showDesc: null,
+    isLoading: null,
+    isError: null,
+  };
+  const reducerfunction = (prevState, dispatchActions) => {
+    // dispatchActions have object of type and payLoad
+    switch (dispatchActions.type) {
+      case 'data-success': {
+        return {
+          showDesc: dispatchActions.payLoad,
+          isError: null,
+          isLoading: null,
+        };
+      }
+      case 'data-failed': {
+        return { ...prevState, isError: dispatchActions.payLoad };
+      }
+      // both ways of using spread operator(...)and not using are ok to use
+      default:
+        return null;
+    }
+  };
+  const [{ showDesc, isError, isLoading }, dispatcher] = useReducer(
+    reducerfunction,
+    initialState
+  );
+  // const [showDesc, setShowDesc] = useState(null);
+  // const [isLoading, setisLoading] = useState(true);
+  // const [isError, setisError] = useState(null);
   const showDescUrl = `shows/${id}?embed[]=cast&embed[]=seasons`;
 
   useEffect(() => {
     const apiGet = async () => {
       try {
         const res = await searchForQuery(showDescUrl);
-        setShowDesc(res.data);
-        setisLoading(false);
-        setisError(false);
+        dispatcher({ type: 'data-success', payLoad: res.data });
+        // setShowDesc(res.data);
+        // setisLoading(false);
+        // setisError(false);
       } catch (err) {
-        setisError(err.message);
-        setisLoading(false);
+        dispatcher({ type: 'data-failed', payLoad: err.message });
+        // setisError(err.message);
+        // setisLoading(false);
       }
     };
     apiGet();
@@ -33,7 +63,7 @@ const ShowsDesc = () => {
   // i didn't faced this issue...but with fetch and .then it may!******
 
   //   console.log(showDesc, 'showDesc');
-  //   console.log(isError, 'isError');
+  console.log(showDesc, 'state');
 
   if (isLoading) {
     return <p>Loading ......</p>;
@@ -49,11 +79,17 @@ const ShowsDesc = () => {
 
   return (
     <>
-      {showDesc.name}
-      {id}
+      {/* {showDesc.map(el => (
+        <p>{el}</p>
+      ))} */}
+      {/* <p>{showDesc.id}</p> */}
+      <p>{id}</p>
       <p>Show id</p>
-      {/* {showDesc} */}
       <p>desc</p>
+      {showDesc && showDesc.name}{' '}
+      {/* this conditional rendering is needed becaz,
+      while state renders from null to data, it may not reflect here,
+       so we want name only if data is loaded from async func */}
     </>
   );
 };
