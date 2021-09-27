@@ -4,7 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import Home from './pages/Home';
 import Starred from './pages/Starred';
 import NotFound from './pages/NotFound';
-import ShowsDesc from './components/show/ShowsDesc';
+import ShowsDesc from './pages/ShowsDesc';
 import './App.css';
 
 function App() {

@@ -2,11 +2,13 @@
 import React, { useEffect, useReducer } from 'react';
 import { useParams } from 'react-router-dom';
 
-import ShowMainData from './ShowMainData';
-import { searchForQuery } from '../../misc/config';
-import ShowDetails from './ShowDetails';
-import ShowSeasons from './ShowSeasons';
-import ShowCast from './ShowCast';
+import ShowMainData from '../components/show/ShowMainData';
+import { searchForQuery } from '../misc/config';
+import ShowDetails from '../components/show/ShowDetails';
+import ShowSeasons from '../components/show/ShowSeasons';
+import ShowCast from '../components/show/ShowCast';
+
+import { ShowPageWrapper, InfoBlock } from './show.styled';
 
 const ShowsDesc = () => {
   const { id } = useParams();
@@ -78,7 +80,7 @@ const ShowsDesc = () => {
   }
 
   return (
-    <>
+    <ShowPageWrapper>
       <h2>Main Data</h2>
       <ShowMainData
         name={showDesc.name}
@@ -87,17 +89,25 @@ const ShowsDesc = () => {
         tags={showDesc.genres}
         rating={showDesc.rating}
       />
-      <h2>Details</h2>
-      <ShowDetails
-        status={showDesc.status}
-        premiered={showDesc.premiered}
-        network={showDesc.network}
-      />
-      <h2>Seasons</h2>
-      <ShowSeasons seasons={showDesc._embedded.seasons} />
-      <h2>Cast</h2>
-      <ShowCast cast={showDesc._embedded.cast} />
-    </>
+      <InfoBlock>
+        <h2>Details</h2>
+        <ShowDetails
+          status={showDesc.status}
+          premiered={showDesc.premiered}
+          network={showDesc.network}
+        />
+      </InfoBlock>
+
+      <InfoBlock>
+        <h2>Seasons</h2>
+        <ShowSeasons seasons={showDesc._embedded.seasons} />
+      </InfoBlock>
+
+      <InfoBlock>
+        <h2>Cast</h2>
+        <ShowCast cast={showDesc._embedded.cast} />
+      </InfoBlock>
+    </ShowPageWrapper>
   );
 };
 
