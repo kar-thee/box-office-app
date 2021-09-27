@@ -4,7 +4,7 @@ import IMG_PLACEHOLDER from '../../Images/not-found.png';
 
 import { Star } from '../styled';
 
-import { MainDataWrapper, Headline } from './ShowMainData.styled';
+import { MainDataWrapper, Headline, TagList } from './ShowMainData.styled';
 
 const ShowMainData = ({ name, rating, summary, tags, image }) => (
   <MainDataWrapper>
@@ -18,14 +18,14 @@ const ShowMainData = ({ name, rating, summary, tags, image }) => (
         </div>
       </Headline>
       <div className="summary" dangerouslySetInnerHTML={{ __html: summary }} />{' '}
-      {/* for running summary as a markup itself since it has <p> tag */}
+      {/* for running summary as a markup itself since it has <p> tag in json */}
       <div>
         Tags:{' '}
-        <div>
+        <TagList>
           {tags.map((tag, i) => (
             <span key={i}>{tag}</span>
           ))}
-        </div>
+        </TagList>
       </div>
     </div>
   </MainDataWrapper>
