@@ -4,7 +4,7 @@ import { Star } from '../styled';
 
 import { StyledShowCard } from './ShowCard.styled';
 
-const ShowCard = ({ name, id, summary, image, starClicker }) => {
+const ShowCard = ({ name, id, summary, image, starClicker, isStarred }) => {
   const summaryTxt = summary
     ? `${summary.split(' ').slice(0, 10).join(' ').replace(/<.+?>/g, '')}...`
     : 'No Description'; // regular expression to remove html tag from summary
@@ -20,7 +20,7 @@ const ShowCard = ({ name, id, summary, image, starClicker }) => {
       <div className="btns">
         <Link to={`/shows/${id}`}>Read more</Link>
         <button type="button" onClick={starClicker}>
-          <Star />
+          <Star active={isStarred} />
         </button>
       </div>
     </StyledShowCard>

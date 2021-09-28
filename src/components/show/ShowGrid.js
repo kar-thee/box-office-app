@@ -11,14 +11,16 @@ import { useShows } from '../../misc/CustomHooks';
 
 const ShowGrid = ({ data }) => {
   // console.log(data, 'Data');
-
+  const [state, dispatch] = useShows();
   return (
     <FlexGrid>
       {data.map(({ show }) => {
-        const [state, dispatch] = useShows();
-        const isStarred = state.includes(show.id);
         console.log(state, 'state');
+        let isStarred = false;
         const starClicker = () => {
+          if (state && state.length > 0) {
+            isStarred = state.includes(show.id);
+          }
           if (isStarred) {
             dispatch({ type: 'REMOVE', showId: show.id });
           } else {
