@@ -1,3 +1,5 @@
+/* eslint-disable arrow-body-style */
+/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable no-return-assign */
 /* eslint-disable no-unused-vars */
 import React from 'react';
@@ -5,21 +7,36 @@ import ShowCard from './ShowCard';
 
 import notFoundImg from '../../Images/not-found.png';
 import { FlexGrid } from '../styled';
+import { useShows } from '../../misc/CustomHooks';
 
 const ShowGrid = ({ data }) => {
-  console.log(data, 'Data');
+  // console.log(data, 'Data');
 
   return (
     <FlexGrid>
-      {data.map(({ show }) => (
-        <ShowCard
-          key={show.id}
-          name={show.name}
-          id={show.id}
-          summary={show.summary}
-          image={show.image ? show.image.medium : notFoundImg} // this is to get if that data have image or not
-        />
-      ))}
+      {data.map(({ show }) => {
+        const [state, dispatch] = useShows();
+        const isStarred = state.includes(show.id);
+        console.log(state, 'state');
+        const starClicker = () => {
+          if (isStarred) {
+            dispatch({ type: 'REMOVE', showId: show.id });
+          } else {
+            dispatch({ type: 'ADD', showId: show.id });
+          }
+        };
+        return (
+          <ShowCard
+            key={show.id}
+            name={show.name}
+            id={show.id}
+            summary={show.summary}
+            image={show.image ? show.image.medium : notFoundImg} // this is to get if that data have image or not
+            starClicker={starClicker}
+            isStarred={isStarred}
+          />
+        );
+      })}
     </FlexGrid>
   );
   // <h1>ShowGrid</h1>
