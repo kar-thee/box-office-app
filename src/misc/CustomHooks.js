@@ -12,7 +12,7 @@ const PersistanceHook = (reducerFunc, initialState, key) => {
   );
 
   useEffect(() => {
-    localStorage.setItem(key, state);
+    localStorage.setItem(key, JSON.stringify(state));
   }, [state, key]);
   // to synchronize whenever state changes put that value to localStorage
 
