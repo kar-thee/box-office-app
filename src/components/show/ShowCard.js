@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Star } from '../styled';
 
 import { StyledShowCard } from './ShowCard.styled';
 
@@ -18,7 +19,9 @@ const ShowCard = ({ name, id, summary, image }) => {
       <p>{summaryTxt}</p>
       <div className="btns">
         <Link to={`/shows/${id}`}>Read more</Link>
-        <button type="button">Star me</button>
+        <button type="button">
+          <Star />
+        </button>
       </div>
     </StyledShowCard>
   );
