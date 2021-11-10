@@ -1,4 +1,4 @@
-import { useReducer, useEffect } from 'react';
+import { useReducer, useEffect, useState } from 'react';
 
 const PersistanceHook = (reducerFunc, initialState, key) => {
   const [state, dispatch] = useReducer(
@@ -34,3 +34,15 @@ const showReducerFunc = (prevstate, dispatchActions) => {
 export const useShows = (key = 'shows') =>
   PersistanceHook(showReducerFunc, [], key);
 // this returns state,dispatch from persistancehook used for preventing repeated calling
+
+export const useSearchState = () => {
+  const [state, setState] = useState(() => {
+    const isPresent = JSON.parse(sessionStorage.getItem('input'));
+    return isPresent || '';
+  });
+  useEffect(() => {
+    sessionStorage.setItem('input', JSON.stringify(state));
+  }, [state]);
+
+  return [state, setState];
+};

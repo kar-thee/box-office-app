@@ -5,9 +5,10 @@ import ShowGrid from '../components/show/ShowGrid';
 import ActorGrid from '../components/actor/ActorGrid';
 
 import { searchForQuery } from '../misc/config';
+import { useSearchState } from '../misc/CustomHooks';
 
 const Home = () => {
-  const [inputState, setInputState] = useState('');
+  const [inputState, setInputState] = useSearchState();
   const [resultState, setResultState] = useState(null);
   const [searchCategory, setSearchCategory] = useState('shows');
 

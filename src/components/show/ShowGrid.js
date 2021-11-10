@@ -16,11 +16,8 @@ const ShowGrid = ({ data }) => {
     <FlexGrid>
       {data.map(({ show }) => {
         console.log(state, 'state');
-        let isStarred = false;
+        const isStarred = state.includes(show.id);
         const starClicker = () => {
-          if (state && state.length > 0) {
-            isStarred = state.includes(show.id);
-          }
           if (isStarred) {
             dispatch({ type: 'REMOVE', showId: show.id });
           } else {
